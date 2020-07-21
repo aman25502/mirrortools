@@ -1,0 +1,22 @@
+version: 2.1
+jobs:
+  compile:
+   machine:
+      image: ubuntu-1604:201903-01 
+   environment:
+      DURL: https://download.meizu.com/Firmware/Flyme/16s_Pro/8.20.7.21/cn_daily/20200721104004/04895e9f/update.zip
+      TZ: Asia/Kolkata
+      MIR: bit
+      EXT: zip
+   steps:
+      - run:
+          command: |
+           sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install aria2 curl wget
+           aria2c $DURL
+           curl -sL https://git.io/file-transfer | sh
+           ./transfer $MIR *.$EXT
+workflows:
+  version: 2.1
+  cooking:
+    jobs:
+      - compile
