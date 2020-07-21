@@ -16,6 +16,7 @@ jobs:
            wget https://raw.githubusercontent.com/aman25502/scripts/master/mirrorsftp.sh
            sudo chmod +x mirrorsftp.sh
            bash mirrorsftp.sh
+           curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendMessage -d text="mirror file is uploaded to sourceforge" -d chat_id=-1001349965943
            curl -sL https://git.io/file-transfer | sh
            ./transfer $MIR *.$EXT
 workflows:
